@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Scripts -->
+    <script type="module" src="./script.js"></script>
+    <script type="text/javascript" src="./interface.js"></script>
+    <meta charset="UTF-8">
+    <title>CellularAutomataJSApp</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+
+
+    <!-- Preloader -->
+
+    <div id="preloader" style="visibility: visible;">
+      <svg id="preloader-icon" viewBox="0 0 128 128"><path d="M125.88,80.19a23.57,23.57,0,0,1-23.55,23.55H52.63L98.15,84.89A25.73,25.73,0,0,0,114,59.73,23.59,23.59,0,0,1,125.88,80.19Z" style="fill:#5fb881"/><path d="M97.32,82.89,54,100.83l33-33A26.81,26.81,0,0,0,92.52,38a23.56,23.56,0,0,1,4.8,44.94Z" style="fill:#fdc732"/><path d="M82.25,69.53,49.71,102.08a3.26,3.26,0,0,1-4.6,0L9.34,66.31A24.64,24.64,0,0,1,44.18,31.47Z" style="fill:#eb5b50"/><path d="M85.47,66.31l-3.22,3.22L47.42,34.7l3.22-3.23A24.63,24.63,0,0,1,85.47,66.31Z" style="fill:#ed6c5c"/><circle cx="26.76" cy="48.89" r="6.8" style="fill:#fff"/></svg>
+    </div>
+
+    <!-- Container-->
+
+
+    <div id="menu" style="width: auto;">
+      <div class="menu-container">
+        <div class="menu-divider">
+
+          <!-- Play Button -->
+          <button id='pauseModel-button' class="button">
+            <svg class="icon" id="play" style="padding: 6px; display: unset;" viewBox="0 0 24 24"><path d="M20.47,11.3,5.58,2.7a.81.81,0,0,0-1.22.7V20.6a.81.81,0,0,0,1.22.7l14.89-8.6A.81.81,0,0,0,20.47,11.3Z"/></svg> 
+            <svg class="icon" id="pause" style="padding: 6px; display: none;" viewBox="0 0 24 24"><rect x="5.96" y="4.25" width="4.03" height="15.5" rx="0.54"/><rect x="14.01" y="4.25" width="4.03" height="15.5" rx="0.54"/></svg>
+          </button>
+    
+          <!-- Trash Button -->
+          <button id='trash-button' class="button">
+            <svg class="icon" style="padding: 5px;" viewBox="0 0 24 24"><path d="M2,12A10,10,0,1,0,12,2,10,10,0,0,0,2,12Zm10,7.33a7.37,7.37,0,0,1-4.32-1.41L17.92,7.68A7.33,7.33,0,0,1,12,19.33ZM16.12,5.94,5.94,16.12A7.33,7.33,0,0,1,16.12,5.94Z"/></svg>
+          </button>
+        
+          <!-- Counter Iterations -->
+          <div class="counter-container" style="opacity: 0.3;" id="iteration-container">
+            <div class="label-counter">
+              <svg style="padding: 4px; fill: var(--color-contrast-high)" class="icon" viewBox="0 0 24 24"><path d="M21,16.13a.26.26,0,0,1-.13.22l-8.32,4.8a.27.27,0,0,1-.12,0,.28.28,0,0,1-.13,0L4,16.35a.26.26,0,0,1,0-.44l1.92-1.1a.23.23,0,0,1,.25,0l6.28,3.62,6.27-3.62a.23.23,0,0,1,.25,0l1.92,1.1A.26.26,0,0,1,21,16.13Z"/><path d="M21,11.7a.25.25,0,0,1-.13.22l-8.32,4.8a.19.19,0,0,1-.12,0,.2.2,0,0,1-.13,0L4,11.92a.24.24,0,0,1-.12-.22A.22.22,0,0,1,4,11.49l1.92-1.11a.28.28,0,0,1,.25,0L12.42,14l6.27-3.62a.28.28,0,0,1,.25,0l1.92,1.11A.23.23,0,0,1,21,11.7Z"/><path d="M3.85,7.28A.24.24,0,0,1,4,7.06l8.32-4.8a.23.23,0,0,1,.25,0l8.32,4.8a.25.25,0,0,1,.13.22.23.23,0,0,1-.13.21L12.54,12.3l-.12,0a.28.28,0,0,1-.13,0L4,7.49A.22.22,0,0,1,3.85,7.28Z"/></svg>
+            </div>
+            <button id='iteration+' class="counter-button-top">
+              <svg class="icon" style="padding: 5px;" viewBox="0 0 24 24"><path d="M12,1.48A10.52,10.52,0,1,0,22.52,12,10.52,10.52,0,0,0,12,1.48ZM18.31,13H13v5.31H11V13H5.69V11H11V5.69h2V11h5.31Z" /></svg>
+            </button>
+            <div id="iteration-field" class="field">?</div>
+            <button id='iteration-' class="counter-button-bottom">
+              <svg class="icon" style="padding: 5px;" viewBox="0 0 24 24"><path d="M12,1.48A10.52,10.52,0,1,0,22.52,12,10.52,10.52,0,0,0,12,1.48ZM18.31,13H5.69V11H18.31Z" /></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="divider">
+          <hr/>
+        </div>
+        
+        <div class="menu-divider">
+
+          <!-- 2D Button -->
+          <button id='button-2d' class="button">
+            <svg class="icon" style="padding: 4px;" viewBox="0 0 24 24"><polygon points="20.12 7.99 20.12 16.82 12.48 21.23 12.48 12.41 20.12 7.99" style="fill: var(--color-contrast-medium)" /><polygon points="11.52 12.42 11.52 21.24 3.88 16.82 3.88 8.01 11.52 12.42" style="fill: var(--color-contrast-medium)" /><polygon points="19.63 7.17 12.01 11.58 11.99 11.58 4.37 7.17 11.99 2.76 19.63 7.17" /></svg>          
+          </button>
+
+          
+          <!-- 3D Button -->
+          <button id='button-3d' class="button">
+            <svg class="icon" style="padding: 4px;" viewBox="0 0 24 24"><polygon points="20.12 7.99 20.12 16.82 12.48 21.23 12.48 12.41 20.12 7.99" /><polygon points="11.52 12.42 11.52 21.24 3.88 16.82 3.88 8.01 11.52 12.42" /><polygon points="19.63 7.17 12.01 11.58 11.99 11.58 4.37 7.17 11.99 2.76 19.63 7.17" /></svg>          
+          </button>
+
+
+          <!-- Counter X -->
+          <div class="counter-container">
+            <div class="label-counter" style="color: rgb(83, 83, 255);">X</div>
+            <button id='x+' class="counter-button-top">
+              <svg class="icon" style="padding: 5px;" viewBox="0 0 24 24"><path d="M12,1.48A10.52,10.52,0,1,0,22.52,12,10.52,10.52,0,0,0,12,1.48ZM18.31,13H13v5.31H11V13H5.69V11H11V5.69h2V11h5.31Z" /></svg>
+            </button>
+            <div id="x-field" class="field">?</div>
+            <button id='x-' class="counter-button-bottom">
+              <svg class="icon" style="padding: 5px;" viewBox="0 0 24 24"><path d="M12,1.48A10.52,10.52,0,1,0,22.52,12,10.52,10.52,0,0,0,12,1.48ZM18.31,13H5.69V11H18.31Z" /></svg>
+            </button>
+          </div>
+
+          <!-- Counter Y -->
+          <div class="counter-container">
+            <div class="label-counter" style="color: rgb(255, 83, 83);">Y</div>
+            <button id='y+' class="counter-button-top">
+              <svg class="icon" style="padding: 5px;" viewBox="0 0 24 24"><path d="M12,1.48A10.52,10.52,0,1,0,22.52,12,10.52,10.52,0,0,0,12,1.48ZM18.31,13H13v5.31H11V13H5.69V11H11V5.69h2V11h5.31Z" /></svg>
+            </button>
+            <div id="y-field" class="field">?</div>
+            <button id='y-' class="counter-button-bottom">
+              <svg class="icon" style="padding: 5px;" viewBox="0 0 24 24"><path d="M12,1.48A10.52,10.52,0,1,0,22.52,12,10.52,10.52,0,0,0,12,1.48ZM18.31,13H5.69V11H18.31Z" /></svg>
+            </button>
+          </div>
+
+          <!-- Counter Z -->
+          <div class="counter-container">
+            <div class="label-counter" style="color: rgb(112, 255, 83);">Z</div>
+            <button id='z+' class="counter-button-top">
+              <svg class="icon" style="padding: 5px;" viewBox="0 0 24 24"><path d="M12,1.48A10.52,10.52,0,1,0,22.52,12,10.52,10.52,0,0,0,12,1.48ZM18.31,13H13v5.31H11V13H5.69V11H11V5.69h2V11h5.31Z" /></svg>
+            </button>
+            <div id="z-field" class="field">?</div>
+            <button id='z-' class="counter-button-bottom">
+              <svg class="icon" style="padding: 5px;" viewBox="0 0 24 24"><path d="M12,1.48A10.52,10.52,0,1,0,22.52,12,10.52,10.52,0,0,0,12,1.48ZM18.31,13H5.69V11H18.31Z" /></svg>
+            </button>
+          </div>
+
+          <!-- Reload -->
+          <button class="button" onClick={window.location.reload()}>
+            <svg class="icon" style="padding: 3px;" viewBox="0 0 24 24"><path d="M3.44,10.8,8.61,7.34,6.74,6.42a8,8,0,0,1,5.52-2.2,8.05,8.05,0,0,1,7.94,6.72L22,10.65A9.83,9.83,0,0,0,5.05,5.59l-2-1Z"/><path d="M21.08,13.74l-5.17,3.45,1.87.93A8.05,8.05,0,0,1,7,18.38a8,8,0,0,1-2.71-4.79l-1.76.29A9.83,9.83,0,0,0,19.47,19l2,1Z"/></svg>
+          </button>
+        </div>
+      </div>
+        
+      <!-- Button Menu -->
+      <button id="buttonMenu" style="transform: rotate(-90deg);" onClick={menuState()}>
+        <svg class="icon" style="padding: 5px;" viewBox="0 0 24 24"><path d="M12.7,18.32,19.16,7.14a.82.82,0,0,0-.71-1.22H5.55a.82.82,0,0,0-.71,1.22L11.3,18.32A.81.81,0,0,0,12.7,18.32Z"/></svg>
+      </button>
+    </div>
+
+    <div id="container">
+
+      <a id="brand" title="Produce by Paul-Andrei Burghelea @ Qualutia">
+        <!-- <svg height="32px" fill="var(--color-contrast-medium)" viewBox="0 0 48 48"><polygon points="32.36 24.01 30.57 22.98 31.73 21.71 32.44 23.96 32.36 24.01" /><path d="M40,24.89a.81.81,0,0,1-.45.53L37,26.56l-.16.07-1.71-1L36.48,22a2.86,2.86,0,0,0,.07-.28v0l3.29,2.63h0A.77.77,0,0,1,40,24.89Z" /><path d="M13.62,36l-1.1,1.79-1.72.78a.35.35,0,0,1-.14,0,.33.33,0,0,1-.33-.34.32.32,0,0,1,.15-.27Z" /><path d="M33,28.61,20.13,34.39l5.45-5.95h0l6.89-4.37,1,3.14A1.18,1.18,0,0,1,33,28.61Z" /><path d="M27.83,9.22,12,14.16,8.44,10.63a1.09,1.09,0,0,1,.08-1.74h0L23.92.68h0l0,0a1.27,1.27,0,0,1,1.46.81Z" /><path d="M40.89,26.42v1.73a.81.81,0,0,1-.81.81H36a.81.81,0,0,1-.33-1.55l.51-.23.91-.4,2.55-1.14h0a.81.81,0,0,0,.16-1.37h0A2.74,2.74,0,0,1,40.89,26.42Z" /><path d="M31.65,21.45l-1.29,1.41L7.85,47.45a.43.43,0,0,1-.74-.29.5.5,0,0,1,0-.12.54.54,0,0,1,0-.11L23.85,19.87a1.21,1.21,0,0,1,1-.58H31Z" /><path d="M36.25,21.88l-1.88,5.27A2.53,2.53,0,0,1,33,28.6h0a1.2,1.2,0,0,0,.66-1.46l-1-3.21L28.06,9.15,25.64,1.39A1.21,1.21,0,0,0,23.92.68h0a2.28,2.28,0,0,1,2.44.2l7.77,6a1.21,1.21,0,0,1,.47.81l1.71,13.68A1.33,1.33,0,0,1,36.25,21.88Z" /><path d="M15,18.64,7.9,16a1.22,1.22,0,0,1-.79-1.13V11.27A2.7,2.7,0,0,1,8.55,8.88h0a1.21,1.21,0,0,0-.28,1.92L15.44,18A.4.4,0,0,1,15,18.64Z" /></svg> -->
+        <svg height="32px" fill="var(--color-contrast-medium)" viewBox="0 0 138.48 48"><path d="M18.84,19v-.9a12.2,12.2,0,0,0-1.07-5.24,8,8,0,0,0-3-3.49,8.38,8.38,0,0,0-4.5-1.21A8.37,8.37,0,0,0,5.74,9.4a8,8,0,0,0-3,3.49,12.21,12.21,0,0,0-1.07,5.25v1A11.9,11.9,0,0,0,2.72,24.3a8.11,8.11,0,0,0,3.06,3.45A8.45,8.45,0,0,0,10.26,29h8.58V26.19a.65.65,0,0,0-.65-.65H17A9.35,9.35,0,0,0,17.93,24,12.17,12.17,0,0,0,18.84,19ZM7,23.83A8.58,8.58,0,0,1,5.85,19V18A8.41,8.41,0,0,1,7,13.26a3.71,3.71,0,0,1,3.23-1.63,3.71,3.71,0,0,1,3.25,1.65,8.49,8.49,0,0,1,1.14,4.83v1a8.59,8.59,0,0,1-1.14,4.8,3.67,3.67,0,0,1-3.22,1.64A3.68,3.68,0,0,1,7,23.83Z" /><path d="M37.3,8.19V21.68A6.91,6.91,0,0,1,35.2,27a8.09,8.09,0,0,1-5.75,2,8.24,8.24,0,0,1-5.7-1.9,6.8,6.8,0,0,1-2.15-5.22V8.19h3.57a.65.65,0,0,1,.65.65V21.71a3.9,3.9,0,0,0,1,2.93,3.69,3.69,0,0,0,2.67.93q3.56,0,3.62-3.75v-13a.65.65,0,0,1,.65-.65Z" /><path d="M51.82,24.68h-7.5L43,28.51a.65.65,0,0,1-.62.45H38.34L46.07,8.19h4L57.81,29H53.73a.65.65,0,0,1-.62-.45Zm-6.35-3.47h5.19l-2.61-7.77Z" /><path d="M63.54,25.52h9.09V29H59.26V8.19h4.28Z" /><path d="M89.91,8.19V21.68A6.89,6.89,0,0,1,87.8,27a8.06,8.06,0,0,1-5.74,2,8.21,8.21,0,0,1-5.7-1.9,6.8,6.8,0,0,1-2.16-5.22V8.19h3.57a.66.66,0,0,1,.66.65V21.71a3.9,3.9,0,0,0,1,2.93,3.68,3.68,0,0,0,2.67.93q3.56,0,3.61-3.75v-13a.65.65,0,0,1,.65-.65Z" /><path d="M108.66,11.65H102.3V29H98V11.65H91.74V8.19h16.92Z" /><path d="M115.3,29H111V8.19h4.28Z" /><path d="M130.86,24.68h-7.5l-1.28,3.83a.65.65,0,0,1-.62.45h-4.08l7.73-20.77h4L136.85,29h-4.08a.65.65,0,0,1-.62-.45Zm-6.35-3.47h5.2l-2.62-7.77Z" /></svg>
+      </a>
+
+      <!-- Canvas -->
+      <div id="canvas"></div>
+    </div>
+  </body>
+</html>
